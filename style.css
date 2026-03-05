@@ -12,6 +12,7 @@
     flex-direction: column;
     gap: 43.56px;
     height: 100%;
+    position: relative;
 }
 
 .presentation__description-content_text{
@@ -32,12 +33,25 @@
 .description__block-text_main{
     margin: 0;
     padding: 0;
+    padding-bottom: 42px;
 }
 
 .description__block-text_main div{
     margin: 0;
     padding: 0;
+    display: flex;
+    flex-direction: column nowrap;
+    align-items: last baseline;
+    justify-content: start;
     
+    
+}
+
+.description__block-text_main div img{
+    margin: 0;
+    padding: 0;
+    margin-left: 70px;
+    padding-bottom: 8px;
 }
 
 .main__text-content_paragraph{
@@ -46,7 +60,9 @@
     line-height: 138.6%;
     letter-spacing: -7%;
     color: #E3B873;
-
+    width: 60px;
+    max-width: 92px;
+    min-width: 92px;
 }
 
 .main__text-content_changing{
@@ -64,7 +80,9 @@
     grid-template-areas:
     "city apartment"
     "time cost";
-
+    width: max-content;
+    height: max-content;
+    gap: 30px 50px;
 }
 
 .description__block-text_parameters p{
@@ -73,6 +91,8 @@
     color: #E3B873;
     margin: 0px;
     padding: 0px;
+    font-family: "Yeseva One", serif;
+    font-weight: 400;
 }
 
 .description__block-text_parameters div span{
@@ -81,6 +101,8 @@
     color: #FFFFFF;
     margin: 0px;
     padding: 0px;
+    font-family: "Futura PT", sans-serif;
+    font-weight: 400;
 }
 
 .parameters__city,
@@ -94,6 +116,12 @@
 
 .circle{
     cursor: pointer;
+    opacity: 0.3;
+    transition: opacity 0.3s ease;
+}
+
+.circle__active{
+    opacity: 1;
 }
 
 .display__links{
@@ -102,6 +130,12 @@
     line-height: 138.6%;
     color: rgba(255, 255, 255, 0.3);
     cursor: pointer;
+    transition: color 0.3s ease;
+    text-decoration: none;
+}
+
+.display__links:hover{
+    color: rgba(255, 255, 255, 0.6);
 }
 
 .parameters__city{
@@ -123,13 +157,12 @@
     height: 13.28px;
 }
 
-.witching__unit-switching_circles{
+.switching__unit-switching_circles{
     margin: 0;
     padding: 0;
     display: flex;
     flex-wrap: nowrap;
     gap: 17.54px;
-    position: fixed;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
@@ -142,9 +175,10 @@
     max-width: max-content;
     min-width: max-content;
     gap: 29.5px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
 }
-
-
 
 .presentation__display{
     display: flex;
@@ -163,4 +197,8 @@
     text-decoration: underline;
     text-underline-offset: 6.68px;
     text-decoration-thickness: 1px;
+}
+
+.links__active:hover{
+    color: #E3B873;
 }
