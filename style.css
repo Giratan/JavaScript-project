@@ -92,6 +92,10 @@
     gap: 9px;
 }
 
+.circle{
+    cursor: pointer;
+}
+
 .display__links{
     text-transform: uppercase;
     font-size: 14px;

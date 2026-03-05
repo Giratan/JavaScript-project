@@ -58,9 +58,9 @@
                 <div class="switching__unit">
                     <img class="switching__unit-left_arrow left_arrow" src="icons/left-arrow.svg" alt="">
                     <div class="switching__unit-switching_circles">
-                        <img class="circle1 circle__active" src="Icons/circle.svg" alt="">
-                        <img class="circle2" src="Icons/circle.svg" alt="">
-                        <img class="circle3" src="Icons/circle.svg" alt="">
+                        <img class="circle circle__active" src="Icons/circle.svg" alt="" data-index="0">
+                        <img class="circle" src="Icons/circle.svg" alt="" data-index="1">
+                        <img class="circle" src="Icons/circle.svg" alt="" data-index="2">
                     </div>
                     <img class="switching__unit-right_arrow right_arrow" src="Icons/right-arrow.svg" alt="">
                 </div>
@@ -69,9 +69,9 @@
 
         <div class = "presentation__display">
             <div class="presentation__display-type_links">
-                <span style="text-transform: uppercase;" class="display__links links__active">rostov-on-don, admiral</span>
-                <span style="text-transform: uppercase;" class="display__links">sochi thieves</span>
-                <span style="text-transform: uppercase;" class="display__links">rostov-on-don patriotic</span>
+                <span style="text-transform: uppercase;" class="display__links links__active" data-index="0">rostov-on-don, admiral</span>
+                <span style="text-transform: uppercase;" class="display__links" data-index="1">sochi thieves</span>
+                <span style="text-transform: uppercase;" class="display__links" data-index="2">rostov-on-don patriotic</span>
             </div>
 
             <div class="presentation__display-type_image">
@@ -80,5 +80,7 @@
             </div>
         </div>
     </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
