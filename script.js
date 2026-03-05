@@ -29,14 +29,14 @@ const slidesObj =[
 const leftArrow = document.querySelector('.left_arrow');
 const rightArrow = document.querySelector('.right_arrow');
 //active page indication
-const circle = document.querySelector('.circle');
+const circles = document.querySelectorAll('.circle');
 //page titles and active links
 const displayLink = document.querySelectorAll('.display__links');
 //page description text
-const cityText = document.querySelectorAll('.parameters__city-text_content');
-const apartmentText = document.querySelectorAll('.parameters__apartment-text_content');
-const timeText = document.querySelectorAll('.parameters__time-text_content');
-const costText = document.querySelectorAll('.parameters__cost-text_content');
+const cityText = document.querySelector('.parameters__city-text_content');
+const apartmentText = document.querySelector('.parameters__apartment-text_content');
+const timeText = document.querySelector('.parameters__time-text_content');
+const costText = document.querySelector('.parameters__cost-text_content');
 //page image
 const image = document.querySelector('.presentation__display-type_image img');
 //active page index
@@ -44,11 +44,10 @@ let correctIndex = 0;
 
 //switching indication by index
 function switchIndicator(index){
-    circle.forEach(circle => circle.classList.remove('circle__active'));
-    circle[index].classList.add('circle__active');
+    circles.forEach(circle => circle.classList.remove('circle__active'));
+    circles[index].classList.add('circle__active');
 }
 
-//switching the active status of links
 function switchLinks(index){
     displayLink.forEach(link => link.classList.remove('links__active'));
     displayLink[index].classList.add('links__active');
@@ -56,41 +55,65 @@ function switchLinks(index){
 
 //page refresh
 function updateSlide(index){
+    if (index < 0 || index >= slidesObj.length) return;
+    
     switchIndicator(index);
     switchLinks(index);
-    cityText[index].textContent = slidesObj[index].city;
-    apartmentText[index].textContent = slidesObj[index].apartment;
-    timeText[index].textContent = slidesObj[index].time;
-    costText[index].textContent = slidesObj[index].cost;
-    image.src = slidesObj[index].src;
+    
+    const slide = slidesObj[index];
+    cityText.innerHTML = slide.city;
+    apartmentText.textContent = slide.apartment;
+    timeText.textContent = slide.time;
+    costText.textContent = slide.cost;
+    image.src = slide.src;
 }
 
 //link processing
 displayLink.forEach((link, index) => {
-    link.addEventListener('click', () => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
         correctIndex = index;
         updateSlide(correctIndex);
     })
 })
+
 //processing of arrows
-//left arrow
-leftArrow.addEventListener('click', () => {
-    correctIndex = (correctIndex - 1 + slidesObj.length) % slidesObj.length;
+function handleArrowClick(direction) {
+    correctIndex = direction === 'prev' 
+        ? (correctIndex - 1 + slidesObj.length) % slidesObj.length
+        : (correctIndex + 1) % slidesObj.length;
     updateSlide(correctIndex);
+}
+
+//left arrow
+leftArrow?.addEventListener('click', (e) => {
+    e.preventDefault();
+    handleArrowClick('prev');
 });
 
 //right arrow
-rightArrow.addEventListener('click', () => {
-    correctIndex = (correctIndex + 1) % slidesObj.length;
-    updateSlide(correctIndex);
+rightArrow?.addEventListener('click', (e) => {
+    e.preventDefault();
+    handleArrowClick('next');
 });
 
 //point processing
-circle.forEach((circle, index) => {
-    circle.addEventListener('click', () => {
+circles.forEach((circle, index) => {
+    circle.addEventListener('click', (e) => {
+        e.preventDefault();
         correctIndex = index;
         updateSlide(correctIndex);
     })
 })
 
-updateSlide(0);
+// Initialize when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+    // Validate all elements exist
+    if (!leftArrow || !rightArrow || !circles.length || !displayLink.length || 
+        !cityText || !apartmentText || !timeText || !costText || !image) {
+        console.error('Some required DOM elements are missing');
+        return;
+    }
+    
+    updateSlide(0);
+});
